@@ -26,7 +26,9 @@
           <td><%= link_to 'Edit', edit_wish_list_path(wish_list) %></td> 
           <td><%= link_to 'Destroy', wish_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        <td><%= link_to 'Buy', wish_list_buy_path(wish_list), method: :post %></td>
+        <% binding.pry %>
+        <% form_for wish_list_add_to_cart_path(wish_list) %>
+        <td><%= link_to 'Add to cart', wish_list_add_to_cart_path(wish_list), method: :post %></td>
       </tr>
     <% end %>
   </tbody>

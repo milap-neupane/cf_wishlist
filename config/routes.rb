@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     post 'buy'
     post 'add_to_cart'
   end
-  devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -60,4 +60,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

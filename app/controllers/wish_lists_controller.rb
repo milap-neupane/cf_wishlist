@@ -70,6 +70,6 @@ class WishListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wish_list_params
-      params[:wish_list].permit(:title, :price, :required_quantity)
+      params[:wish_list].permit(:title, :price, :required_quantity, :discreption)
     end
 end

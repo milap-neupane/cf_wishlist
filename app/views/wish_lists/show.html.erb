@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<div>
+	<h1><%= @wish_list.title %></h1>
+	<h3><%= @wish_list.price %></h3>
+	<h3><%= @wish_list.required_quantity %></h3>
+</div>
+<%= link_to 'Edit', edit_wish_list_path(@wish_list) %> |
+<%= link_to 'Back', wish_lists_path %>

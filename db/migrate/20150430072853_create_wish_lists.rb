@@ -6,7 +6,6 @@ class CreateWishLists < ActiveRecord::Migration
       t.float   :price
       t.integer :completed_quantity
       t.text    :discreption
-      t.belongs_to :user
 
       t.timestamps null: false
     end

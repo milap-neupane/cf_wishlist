@@ -14,11 +14,12 @@
 ActiveRecord::Schema.define(version: 20150430072956) do
 
   create_table "trackers", force: :cascade do |t|
-    t.integer  "item_count"
+    t.integer  "item_count",   default: 0
     t.float    "price"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "wish_list_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "users", force: :cascade do |t|

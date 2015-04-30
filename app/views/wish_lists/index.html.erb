@@ -21,9 +21,12 @@
         <td>
           <p><%= wish_list.required_quantity %></p>
         </td>
-        <td><%= link_to 'Show', wish_list %></td>
-        <td><%= link_to 'Edit', edit_wish_list_path(wish_list) %></td>
-        <td><%= link_to 'Destroy', wish_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :wish_lists, current_user %>
+          <td><%= link_to 'Show', wish_list %></td>
+          <td><%= link_to 'Edit', edit_wish_list_path(wish_list) %></td> 
+          <td><%= link_to 'Destroy', wish_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <td><%= link_to 'Buy', wish_list_buy_path(wish_list), method: :post %></td>
       </tr>
     <% end %>
   </tbody>

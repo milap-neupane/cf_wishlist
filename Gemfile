@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'pg'
 
 gem 'devise'
+gem 'omniauth-facebook'
+
 
 gem 'cancancan'
 

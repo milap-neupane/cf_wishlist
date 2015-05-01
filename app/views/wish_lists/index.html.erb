@@ -23,12 +23,12 @@
         </td>
         <% if can? :wish_lists, current_user %>
           <td><%= link_to 'Show', wish_list %></td>
-          <td><%= link_to 'Edit', edit_wish_list_path(wish_list) %></td> 
+          <td><%= link_to 'Edit', edit_wish_list_path(wish_list) %></td>
           <td><%= link_to 'Destroy', wish_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
 
         <td>
-          <%= form_for 'wish', url: wish_list_pledge_path(wish_list) do |f| %>
+          <%= form_for 'pledge', url: wish_list_pledge_path(wish_list) do |f| %>
             <%= f.number_field :item_count %>
             <%= submit_tag 'Pledge' %>
           <% end %>

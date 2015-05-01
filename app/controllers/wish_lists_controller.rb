@@ -1,6 +1,6 @@
 class WishListsController < ApplicationController
   before_action :set_wish_list, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   # GET /wish_lists
   # GET /wish_lists.json
@@ -64,9 +64,9 @@ class WishListsController < ApplicationController
 
   def pledge
     tracker = Tracker.find_or_initialize_by(tracker_params).tap do |tracker|
-      tracker.item_count += params['item_count']
+      items_count = params['wish']['item_count']
+      tracker.item_count += items_count.to_i
     end
- 
     tracker.save
     respond_to do |format|
       format.html { redirect_to wish_lists_url, notice: 'Thank you for your help.' }
@@ -74,14 +74,13 @@ class WishListsController < ApplicationController
   end
 
   def add_to_cart
-    
     cart_item = current_user.cart.new(cart_params)
     respond_to do |format|
       if cart_item.save
         format.html { redirect_to wish_lists_url, notice: 'Item added to cart.' } 
       else
         format.html { redirect_to wish_lists_url, alert: cart_item.errors.message }
-      end      
+      end
     end
   end
 
@@ -101,5 +100,5 @@ class WishListsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def wish_list_params
       params[:wish_list].permit(:title, :price, :required_quantity)
-    end    
+    end
 end

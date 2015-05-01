@@ -62,7 +62,7 @@ class WishListsController < ApplicationController
     end
   end
 
-  def buy
+  def pledge
     tracker = Tracker.find_or_initialize_by(tracker_params).tap do |tracker|
       tracker.item_count += params['item_count']
     end
@@ -74,7 +74,7 @@ class WishListsController < ApplicationController
   end
 
   def add_to_cart
-    binding.pry
+    
     cart_item = current_user.cart.new(cart_params)
     respond_to do |format|
       if cart_item.save

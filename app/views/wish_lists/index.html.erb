@@ -26,9 +26,13 @@
           <td><%= link_to 'Edit', edit_wish_list_path(wish_list) %></td> 
           <td><%= link_to 'Destroy', wish_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        <% binding.pry %>
-        <% form_for wish_list_add_to_cart_path(wish_list) %>
-        <td><%= link_to 'Add to cart', wish_list_add_to_cart_path(wish_list), method: :post %></td>
+
+        <td>
+          <%= form_for wish_list_pledge_path(wish_list) do |f| %>
+            <%= f.number_field :item_count %>
+            <%= submit_tag 'Pledge' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

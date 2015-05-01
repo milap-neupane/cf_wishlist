@@ -62,10 +62,40 @@ class WishListsController < ApplicationController
     end
   end
 
+  def buy
+    tracker = Tracker.find_or_initialize_by(tracker_params).tap do |tracker|
+      tracker.item_count += params['item_count']
+    end
+ 
+    tracker.save
+    respond_to do |format|
+      format.html { redirect_to wish_lists_url, notice: 'Thank you for your help.' }
+    end
+  end
+
+  def add_to_cart
+    binding.pry
+    cart_item = current_user.cart.new(cart_params)
+    respond_to do |format|
+      if cart_item.save
+        format.html { redirect_to wish_lists_url, notice: 'Item added to cart.' } 
+      else
+        format.html { redirect_to wish_lists_url, alert: cart_item.errors.message }
+      end      
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_wish_list
       @wish_list = WishList.find(params[:id])
+    end
+
+    def tracker_params
+      options = {}
+      options['wish_list_id'] = params['wish_list_id']
+      options['user_id'] = current_user.id
+      options
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

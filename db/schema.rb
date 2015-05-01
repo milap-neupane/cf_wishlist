@@ -11,20 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430072956) do
+ActiveRecord::Schema.define(version: 20150430094210) do
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "wish_list_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "trackers", force: :cascade do |t|
-    t.integer  "item_count"
+    t.integer  "item_count",   default: 0
     t.float    "price"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "wish_list_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.boolean  "admin",                  default: false
+    t.string   "contact_number"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -46,7 +55,6 @@ ActiveRecord::Schema.define(version: 20150430072956) do
     t.float    "price"
     t.integer  "completed_quantity"
     t.text     "discreption"
-    t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end

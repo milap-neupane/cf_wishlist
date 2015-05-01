@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :wish_lists
+  resources :wish_lists do
+    post 'buy'
+    post 'add_to_cart'
+  end
   devise_for :users
 
 

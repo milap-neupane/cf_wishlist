@@ -1,34 +1,42 @@
-<%= form_for(@wish_list) do |f| %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_for(@wish_list) do |f| %>
+      <% if @wish_list.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@wish_list.errors.count, "error") %> prohibited this wish_list from being saved:</h2>
 
-  <% if @wish_list.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@wish_list.errors.count, "error") %> prohibited this wish_list from being saved:</h2>
+          <ul>
+          <% @wish_list.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
 
-      <ul>
-      <% @wish_list.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        </div>
       <% end %>
-      </ul>
 
-    </div>
-  <% end %>
+      <div class="form-group">
+        <%= f.label :title %><br>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+      <div class="form-group">
+        <%= f.label :discreption %><br>
+        <%= f.text_area :discreption, class: "form-control" %>
+      </div>
 
-  <p>
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
-  </p>
+      <div class="form-group">
+        <%= f.label :required_quantity %><br>
+        <%= f.text_field :required_quantity, class: "form-control" %>
+      </div>
 
-  <p>
-    <%= f.label :required_quantity %><br>
-    <%= f.text_field :required_quantity %>
-  </p>
+      <div class="form-group">
+        <%= f.label :price %><br>
+        <%= f.number_field :price, class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

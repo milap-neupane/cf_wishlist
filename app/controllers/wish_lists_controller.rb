@@ -83,7 +83,7 @@ class WishListsController < ApplicationController
     cart_item = current_user.cart.new(cart_params)
     respond_to do |format|
       if cart_item.save
-        format.html { redirect_to wish_lists_url, notice: 'Item added to cart.' } 
+        format.html { redirect_to wish_lists_url, notice: 'Item added to cart.' }
       else
         format.html { redirect_to wish_lists_url, alert: cart_item.errors.message }
       end
@@ -105,6 +105,6 @@ class WishListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wish_list_params
-      params[:wish_list].permit(:title, :price, :required_quantity)
+      params[:wish_list].permit(:title, :price, :required_quantity, :discreption)
     end
 end

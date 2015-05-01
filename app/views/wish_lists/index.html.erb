@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<% if can? :wish_lists, current_user %>
-  <%= link_to 'New Wish list', new_wish_list_path %>
-<% end %>
+<span id="notice"><%= notice %></span>
 
 <div class="page-header">
+  <% if can? :wish_lists, current_user %>
+    <span class='pull-right'><%= link_to 'New Wish list', new_wish_list_path %></span>
+  <% end %>
   <h1>Wish Lists</h1>
 </div>
 

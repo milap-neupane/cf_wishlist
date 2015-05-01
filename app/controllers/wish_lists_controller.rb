@@ -64,8 +64,14 @@ class WishListsController < ApplicationController
 
   def pledge
     tracker = Tracker.find_or_initialize_by(tracker_params).tap do |tracker|
-      items_count = params['wish']['item_count']
-      tracker.item_count += items_count.to_i
+      items_count = params['pledge']['item_count'].to_i
+      tracker.item_count += items_count
+      if tracker.save
+        wish_list = WishList.find tracker_params['wish_list_id']
+        required_quantity = wish_list.required_quantity
+        wish_list.required_quantity = required_quantity - items_count
+        wish_list.save
+      end
     end
     tracker.save
     respond_to do |format|

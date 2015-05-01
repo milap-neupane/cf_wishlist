@@ -24,8 +24,11 @@
           <div class='clearfix'></div>
           <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
         </div>
+         <%= form_for 'pledge', url: wish_list_pledge_path(wish_list) do |f| %>
+            <%= f.number_field :item_count %>
+            <%= submit_tag 'Pledge' %>
+          <% end %>
       </div>
     </div>
   <% end %>
 </div>
-
